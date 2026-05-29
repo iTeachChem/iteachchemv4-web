@@ -1,0 +1,36 @@
+@import "tailwindcss";
+@source "../node_modules/flowbite-svelte/dist";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+  color-scheme: dark;
+  --dc-1: #313338;
+  --dc-2: #2b2d31;
+  --dc-3: #1e1f22;
+  --dc-4: #383a40;
+  --dc-5: #404249;
+  --dc-t1: #f2f3f5;
+  --dc-t2: #b5bac1;
+  --dc-t3: #80848e;
+  --dc-t4: #4e5058;
+  --dc-accent: #5865f2;
+  --dc-green: #23a55a;
+  --dc-gold: #faa61a;
+  --dc-border: #3f4147;
+}
+
+*,
+*::before,
+*::after {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: var(--dc-1);
+  color: var(--dc-t1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

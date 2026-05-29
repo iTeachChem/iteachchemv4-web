@@ -1,0 +1,71 @@
+<script lang="ts">
+	import { Badge } from 'flowbite-svelte';
+	import type { UserRow } from '../../routes/+page.server';
+
+	interface Props {
+		pageRows: UserRow[];
+		tab: 'doubts' | 'quiz';
+		page: number;
+		pageSize: number;
+	}
+
+	let { pageRows, tab, page, pageSize }: Props = $props();
+
+	function pts(n: number | null) {
+		if (n == null) return '0';
+		return Number.isInteger(n) ? String(n) : n.toFixed(1);
+	}
+</script>
+
+<div class="overflow-hidden rounded" style="background:var(--dc-2);">
+	<table class="w-full text-sm">
+		<thead>
+			<tr style="border-bottom:1px solid var(--dc-border);">
+				<th class="w-12 px-3 py-2 text-left text-[10px] font-bold uppercase tracking-wider" style="color:var(--dc-t3);">#</th>
+				<th class="px-3 py-2 text-left text-[10px] font-bold uppercase tracking-wider" style="color:var(--dc-t3);">Member</th>
+				<th class="px-3 py-2 text-right text-[10px] font-bold uppercase tracking-wider" style="color:var(--dc-t3);">{tab === 'doubts' ? 'Doubts' : 'Solved'}</th>
+				{#if tab === 'quiz'}
+					<th class="px-3 py-2 text-right text-[10px] font-bold uppercase tracking-wider" style="color:var(--dc-t3);">Attempted</th>
+				{/if}
+				<th class="px-3 py-2 text-right text-[10px] font-bold uppercase tracking-wider" style="color:var(--dc-t3);">Points</th>
+			</tr>
+		</thead>
+		<tbody>
+			{#each pageRows as row, i (row.user_id)}
+				{@const rank = (page - 1) * pageSize + i}
+				<tr
+					class="transition-colors"
+					style="border-bottom:1px solid var(--dc-border);"
+					onmouseenter={(e) => ((e.currentTarget as HTMLElement).style.background = '#32353b')}
+					onmouseleave={(e) => ((e.currentTarget as HTMLElement).style.background = '')}
+				>
+					<td class="px-3 py-2">
+						{#if rank === 0}
+							<span class="text-base">🥇</span>
+						{:else if rank === 1}
+							<span class="text-base">🥈</span>
+						{:else if rank === 2}
+							<span class="text-base">🥉</span>
+						{:else}
+							<span class="font-mono text-xs" style="color:var(--dc-t4);">{rank + 1}</span>
+						{/if}
+					</td>
+					<td class="px-3 py-2 font-medium" style="color:var(--dc-t1);">{row.username}</td>
+					<td class="px-3 py-2 text-right">
+						<Badge color="blue" class="font-mono text-[11px] font-semibold">
+							{tab === 'doubts' ? row.doubts_solved : row.questions_solved}
+						</Badge>
+					</td>
+					{#if tab === 'quiz'}
+						<td class="px-3 py-2 text-right font-mono text-xs" style="color:var(--dc-t3);">
+							{row.questions_attempted ?? 0}
+						</td>
+					{/if}
+					<td class="px-3 py-2 text-right">
+						<Badge color="green" class="font-mono text-[11px]">{pts(row.points)}</Badge>
+					</td>
+				</tr>
+			{/each}
+		</tbody>
+	</table>
+</div>
