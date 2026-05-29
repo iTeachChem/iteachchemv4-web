@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "iteachchemv4-web",
+  "name": "bot",
   "compatibility_date": "2026-05-29",
   "observability": {
     "enabled": true
