@@ -17,7 +17,10 @@ async function hmac(secret: string, payload: string): Promise<string> {
 		['sign']
 	);
 	const sig = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(payload));
-	return Buffer.from(sig).toString('base64url');
+	const bytes = new Uint8Array(sig);
+	let binary = '';
+	for (const b of bytes) binary += String.fromCharCode(b);
+	return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
 }
 
 function constEq(a: string, b: string): boolean {

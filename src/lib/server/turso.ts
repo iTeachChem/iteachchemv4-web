@@ -1,9 +1,9 @@
-import { createClient } from '@libsql/client';
+import { createClient } from '@libsql/client/web';
 import { TURSO_DATABASE_URL, TURSO_AUTH_TOKEN } from '$env/static/private';
 
 export const db = createClient({
-	url: TURSO_DATABASE_URL,
-	authToken: TURSO_AUTH_TOKEN,
+	url: TURSO_DATABASE_URL.trim(),
+	authToken: TURSO_AUTH_TOKEN.trim(),
 });
 
 const CACHE_TTL = 3_600_000;
