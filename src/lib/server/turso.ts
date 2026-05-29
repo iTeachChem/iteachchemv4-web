@@ -6,7 +6,7 @@ export const db = createClient({
 	authToken: TURSO_AUTH_TOKEN,
 });
 
-const CACHE_TTL = 30_000;
+const CACHE_TTL = 3_600_000;
 const _store = new Map<string, { value: unknown; expires: number }>();
 
 export async function cached<T>(key: string, fn: () => Promise<T>, ttl = CACHE_TTL): Promise<T> {
