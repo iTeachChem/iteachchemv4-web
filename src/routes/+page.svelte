@@ -72,24 +72,6 @@
 		</div>
 	</div>
 
-	<!-- Tabs -->
-	<div class="mb-4 flex" style="border-bottom:1px solid var(--dc-border);">
-		<button
-			onclick={() => { tab = 'doubts'; query = ''; }}
-			class="cursor-pointer px-3 py-2 text-sm font-medium transition-colors"
-			style={tab === 'doubts'
-				? 'color:var(--dc-t1); border-bottom:2px solid var(--dc-accent); margin-bottom:-1px;'
-				: 'color:var(--dc-t3); border-bottom:2px solid transparent; margin-bottom:-1px;'}
-		>Doubts Solved</button>
-		<button
-			onclick={() => { tab = 'quiz'; query = ''; }}
-			class="cursor-pointer px-3 py-2 text-sm font-medium transition-colors"
-			style={tab === 'quiz'
-				? 'color:var(--dc-t1); border-bottom:2px solid var(--dc-accent); margin-bottom:-1px;'
-				: 'color:var(--dc-t3); border-bottom:2px solid transparent; margin-bottom:-1px;'}
-		>Quiz Rankings</button>
-	</div>
-
 	<!-- Count + clear -->
 	<div class="mb-2 flex items-center justify-between">
 		<span class="text-[11px]" style="color:var(--dc-t3);">
@@ -108,7 +90,7 @@
 	{#if rows.length === 0}
 		<div class="py-16 text-center text-sm" style="color:var(--dc-t3);">No members found</div>
 	{:else}
-		<LeaderboardTable {pageRows} {tab} {page} pageSize={PAGE_SIZE} />
+		<LeaderboardTable {pageRows} {tab} {page} pageSize={PAGE_SIZE} ontabchange={(t) => { tab = t; query = ''; }} />
 		<Pagination {page} {totalPages} onpage={(n) => (page = n)} />
 	{/if}
 

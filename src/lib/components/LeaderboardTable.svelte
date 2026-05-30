@@ -7,13 +7,33 @@
 		tab: 'doubts' | 'quiz';
 		page: number;
 		pageSize: number;
+		ontabchange: (tab: 'doubts' | 'quiz') => void;
 	}
 
-	let { pageRows, tab, page, pageSize }: Props = $props();
+	let { pageRows, tab, page, pageSize, ontabchange }: Props = $props();
 </script>
 
-<div class="overflow-x-auto rounded" style="background:var(--dc-2);">
-	<table class="mx-auto w-full max-w-2xl text-base">
+<div class="flex justify-center">
+<!-- Tab switcher -->
+<div class="flex w-full max-w-3xl flex-col gap-2">
+	<div class="flex gap-2">
+		<button
+			onclick={() => ontabchange('doubts')}
+			class="cursor-pointer rounded-full px-4 py-1.5 text-sm font-medium transition-colors"
+			style={tab === 'doubts'
+				? 'background:var(--dc-accent); color:#fff;'
+				: 'background:var(--dc-3); color:var(--dc-t3);'}
+		>Doubts Solved</button>
+		<button
+			onclick={() => ontabchange('quiz')}
+			class="cursor-pointer rounded-full px-4 py-1.5 text-sm font-medium transition-colors"
+			style={tab === 'quiz'
+				? 'background:var(--dc-accent); color:#fff;'
+				: 'background:var(--dc-3); color:var(--dc-t3);'}
+		>Quiz Rankings</button>
+	</div>
+<div class="inline-block overflow-x-auto rounded" style="background:var(--dc-2);">
+	<table class="w-full max-w-4xl text-base">
 		<thead>
 			<tr style="border-bottom:1px solid var(--dc-border);">
 				<th class="w-12 px-3 py-3 text-left text-xs font-bold uppercase tracking-wider" style="color:var(--dc-t3);">#</th>
@@ -59,4 +79,6 @@
 			{/each}
 		</tbody>
 	</table>
+</div>
+</div>
 </div>
