@@ -8,7 +8,6 @@ export type UserRow = {
 	questions_attempted: number;
 	questions_solved: number;
 	questions_skipped: number;
-	points: number;
 	total_time_taken: string | null;
 };
 

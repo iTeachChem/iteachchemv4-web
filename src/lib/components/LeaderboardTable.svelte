@@ -10,11 +10,6 @@
 	}
 
 	let { pageRows, tab, page, pageSize }: Props = $props();
-
-	function pts(n: number | null) {
-		if (n == null) return '0';
-		return Number.isInteger(n) ? String(n) : n.toFixed(1);
-	}
 </script>
 
 <div class="overflow-x-auto rounded" style="background:var(--dc-2);">
@@ -27,7 +22,6 @@
 				{#if tab === 'quiz'}
 					<th class="hidden px-2 py-2 text-right text-[10px] font-bold uppercase tracking-wider sm:table-cell sm:px-3" style="color:var(--dc-t3);">Attempted</th>
 				{/if}
-				<th class="px-2 py-2 text-right text-[10px] font-bold uppercase tracking-wider sm:px-3" style="color:var(--dc-t3);">Points</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -61,9 +55,6 @@
 							{row.questions_attempted ?? 0}
 						</td>
 					{/if}
-					<td class="px-2 py-2 text-right sm:px-3">
-						<Badge color="green" class="font-mono text-[11px]">{pts(row.points)}</Badge>
-					</td>
 				</tr>
 			{/each}
 		</tbody>
