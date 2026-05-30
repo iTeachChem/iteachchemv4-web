@@ -13,7 +13,7 @@
 </script>
 
 <div class="overflow-x-auto rounded" style="background:var(--dc-2);">
-	<table class="w-full max-w-2xl text-base">
+	<table class="mx-auto w-full max-w-2xl text-base">
 		<thead>
 			<tr style="border-bottom:1px solid var(--dc-border);">
 				<th class="w-12 px-3 py-3 text-left text-xs font-bold uppercase tracking-wider" style="color:var(--dc-t3);">#</th>
